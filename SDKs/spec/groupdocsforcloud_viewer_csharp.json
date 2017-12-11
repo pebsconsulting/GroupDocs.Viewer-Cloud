@@ -1,0 +1,5995 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GroupDocs.Viewer for Cloud API References",
+    "version": "1"
+  },
+  "host": "localhost",
+  "basePath": "/v1",
+  "schemes": [],
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/viewer/fonts": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "List installed fonts.",
+        "operationId": "GetFonts",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of installed fonts.",
+            "schema": {
+              "$ref": "#/definitions/FontCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/fonts/cache": {
+      "delete": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Removes fonts cache.",
+        "operationId": "DeleteFontsCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "An empty response with '204 No Content' status will be returned to confirm deletion."
+          }
+        }
+      }
+    },
+    "/viewer/formats": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of supported file formats.",
+        "operationId": "GetSupportedFileFormats",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The object with list of supported file formats.",
+            "schema": {
+              "$ref": "#/definitions/FormatCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment information.",
+        "operationId": "HtmlGetAttachmentInfo",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about attachment pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment information with specified DocumentInfoOptions.\nExpects DocumentInfoOptions object data in request body.",
+        "operationId": "HtmlGetAttachmentInfoWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about attachment pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/pages/{pageNumber}/resources/{resourceName}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads HTML page resource (image, style, graphics or font).",
+        "operationId": "HtmlGetAttachmentPageResource",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "ResourceName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the resource."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of HTML resource.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment pages as HTML.",
+        "operationId": "HtmlGetAttachmentPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment page HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object with list of attachment pages.",
+            "schema": {
+              "$ref": "#/definitions/HtmlAttachmentPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates attachment cache. ",
+        "operationId": "HtmlCreateAttachmentPagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "name": "HtmlOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/HtmlOptions"
+            },
+            "x-nullable": true,
+            "description": "The HTML rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to attachment pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/HtmlAttachmentPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/pages/zip": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment pages as HTML.",
+        "operationId": "HtmlGetZipWithAttachmentPages",
+        "consumes": [
+          "application/zip"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment page HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ZIP archive with actual pages as HTML.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/pages/{pageNumber}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads attachment page as HTML.",
+        "operationId": "HtmlGetAttachmentPage",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The document name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The attachment page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment page HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of attachment page.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}/pages/cache": {
+      "delete": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Removes attachment cache.",
+        "operationId": "HtmlDeleteAttachmentPagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response with '204 No Content' status will be returned to confirm deletion."
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/attachments": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document attachments.",
+        "operationId": "HtmlGetAttachments",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object with list of attachments.",
+            "schema": {
+              "$ref": "#/definitions/AttachmentCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/attachments/{attachmentName}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads attachment.",
+        "operationId": "HtmlGetAttachment",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of attachment.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information.",
+        "operationId": "HtmlGetDocumentInfo",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information with specified DocumentInfoOptions.\nExpects DocumentInfoOptions object data in request body.",
+        "operationId": "HtmlGetDocumentInfoWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/html/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlGetDocumentInfoFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for posted document.\nContent with document or multipart content is expected where first part is document and second is DocumentInfoOptions.\nSaves file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlGetDocumentInfoFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "DocumentInfoOptions",
+            "in": "formData",
+            "required": true,
+            "description": "Document info options 'DocumentInfoOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlGetDocumentInfoFromUrlWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/pages/{pageNumber}/resources/{resourceName}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads HTML page resource (image, style, graphics or font).",
+        "operationId": "HtmlGetPageResource",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "ResourceName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the resource."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of HTML page resource.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as HTML.",
+        "operationId": "HtmlGetPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object which contains list of links to document pages as HTML.",
+            "schema": {
+              "$ref": "#/definitions/HtmlPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates document pages as HTML and saves them in cache. Pages created before will be removed from cache.",
+        "operationId": "HtmlCreatePagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "HtmlOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/HtmlOptions"
+            },
+            "x-nullable": true,
+            "description": "The HTML rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/HtmlPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Rotates or reorders document page(s).",
+        "operationId": "HtmlTransformPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "TransformOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TransformOptionsBase"
+            },
+            "x-nullable": true,
+            "description": "The transformation options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object with updated list of pages will be returned upon success.",
+            "schema": {
+              "$ref": "#/definitions/PageInfoCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/pages/zip": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as HTML.",
+        "operationId": "HtmlGetZipWithPages",
+        "consumes": [
+          "application/zip"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ZIP archive with actual pages as HTML.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/html/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as HTML.",
+        "operationId": "HtmlGetPagesFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object which contains list of links to document pages as HTML or ZIP archive with actual pages as HTML when \"application/zip\" accept header specified.",
+            "schema": {
+              "$ref": "#/definitions/HtmlPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates posted document pages as HTML and saves them in cache.\nContent with document or multipart content is expected where first part is document and second is HtmlOptions.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlCreatePagesCacheFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "HtmlOptions",
+            "in": "formData",
+            "required": true,
+            "description": "HTML rendering options 'HtmlOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/HtmlPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates pages as HTML and saves them in cache for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlCreatePagesCacheFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "HtmlOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/HtmlOptions"
+            },
+            "x-nullable": true,
+            "description": "The HTML rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/HtmlPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/pages/{pageNumber}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document page as HTML.",
+        "operationId": "HtmlGetPage",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "text/html"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "ResourcePath",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The HTML resource path."
+          },
+          {
+            "type": "boolean",
+            "name": "IgnoreResourcePathInResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this option enabled ResourcePath won't be added to resource reference in *.css and *.svg files.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "EmbedResources",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Whether to embed HTML resources or save them separate.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of document page as HTML.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/html/pages/cache": {
+      "delete": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Removes document cache.",
+        "operationId": "HtmlDeletePagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response with '204 No Content' status will be returned to confirm deletion."
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/html/pdf": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document as PDF.",
+        "operationId": "HtmlGetPdfFile",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/pdf"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password. Not required if PDF document was created before."
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual file data of document in PDF format.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document. \nRemoves PDF document if it was created before.",
+        "operationId": "HtmlCreatePdfFile",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The document name."
+          },
+          {
+            "name": "PdfFileOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PdfFileOptions"
+            },
+            "x-nullable": true,
+            "description": "The PDF file rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains information about newly created PDF document along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/html/pdf": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document at provided URL as PDF. \nDocument will be retrieved from the passed URL and added to Storage.",
+        "operationId": "HtmlGetPdfFileFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/pdf"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password. Not required if PDF document was created before."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual file data of document in PDF format.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document from document passed in request body and saves it in cache.\nContent with document or multipart content is expected where first part is document and second is PdfFileOptions.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "HtmlCreatePdfFileFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "PdfFileOptions",
+            "in": "formData",
+            "required": true,
+            "description": "PDF rendering options 'PdfFileOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains link to newly created PDF document along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document for document at provided URL and saves it in cache. \nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.\nExpects PdfFileOptions﻿ object data in request body.",
+        "operationId": "HtmlCreatePdfFileFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "PdfFileOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PdfFileOptions"
+            },
+            "x-nullable": true,
+            "description": "The PDF file rendering."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains information about newly created PDF document or actual PDF document when \"application/pdf\" accept header specified returned along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment information.",
+        "operationId": "ImageGetAttachmentInfo",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about attachment pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment information with specified DocumentInfoOptions.\nExpects DocumentInfoOptions object data in request body.",
+        "operationId": "ImageGetAttachmentInfoWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about attachment pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment pages as images.",
+        "operationId": "ImageGetAttachmentPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml",
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object with list of attachment pages.",
+            "schema": {
+              "$ref": "#/definitions/ImageAttachmentPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates attachment cache.",
+        "operationId": "ImageCreateAttachmentPagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "name": "ImageOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ImageOptions"
+            },
+            "x-nullable": true,
+            "description": "The image rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to attachment pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/ImageAttachmentPageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}/pages/zip": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves attachment pages as images.",
+        "operationId": "ImageGetZipWithAttachmentPages",
+        "consumes": [
+          "application/zip"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The attachment name."
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ZIP archive with actual pages as image.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}/pages/{pageNumber}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads attachment page as image.",
+        "operationId": "ImageGetAttachmentPage",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "image/*"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The attachment page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentPassword",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The attachment password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of attachment page.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}/pages/cache": {
+      "delete": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Removes attachment cache.",
+        "operationId": "ImageDeleteAttachmentPagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response with '204 No Content' status will be returned to confirm deletion."
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/attachments": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document attachments.",
+        "operationId": "ImageGetAttachments",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object with list of document attachments.",
+            "schema": {
+              "$ref": "#/definitions/AttachmentCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/attachments/{attachmentName}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads attachment.",
+        "operationId": "ImageGetAttachment",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "AttachmentName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "Name of the attachment."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual data of attachment.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/image/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information.",
+        "operationId": "ImageGetDocumentInfo",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and size, document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information with specified options.\nExpects DocumentInfoOptions object data in request body.",
+        "operationId": "ImageGetDocumentInfoWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and size, document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/image/info": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageGetDocumentInfoFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for posted document.\nContent with document or multipart content is expected where first part is document and second is DocumentInfoOptions.\nSaves file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageGetDocumentInfoFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "DocumentInfoOptions",
+            "in": "formData",
+            "required": true,
+            "description": "Document info options 'DocumentInfoOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves document information for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageGetDocumentInfoFromUrlWithOptions",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "DocumentInfoOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfoOptions"
+            },
+            "x-nullable": true,
+            "description": "The rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The object that contains information about file format and file size. Includes information about document pages and attachments.",
+            "schema": {
+              "$ref": "#/definitions/DocumentInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as image.",
+        "operationId": "ImageGetPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object which contains list of links to document pages as images.",
+            "schema": {
+              "$ref": "#/definitions/ImagePageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates document pages as image and saves them in cache. \nPages created before will be removed from cache.",
+        "operationId": "ImageCreatePagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "ImageOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ImageOptions"
+            },
+            "x-nullable": true,
+            "description": "The image render options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages as image along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/ImagePageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Rotates or reorders document page(s).",
+        "operationId": "ImageTransformPages",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "TransformOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TransformOptionsBase"
+            },
+            "x-nullable": true,
+            "description": "The transformation options."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "An object with updated list of pages will be returned upon success.",
+            "schema": {
+              "$ref": "#/definitions/PageInfoCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/pages/zip": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as image.",
+        "operationId": "ImageGetZipWithPages",
+        "consumes": [
+          "application/zip"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ZIP archive with actual pages as image.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/image/pages": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Retrieves list of document pages as image.",
+        "operationId": "ImageGetPagesFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality for jpg format. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "StartPageNumber",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The starting document page number to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "CountPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The count of document pages to render.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Object which contains list of links to document pages as images.",
+            "schema": {
+              "$ref": "#/definitions/ImagePageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates posted document pages as image and saves them in cache.\nContent with document or multipart content is expected where first part is document and second is HtmlOptions.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageCreatePagesCacheFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "ImageOptions",
+            "in": "formData",
+            "required": true,
+            "description": "Image rendering options 'ImageOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/ImagePageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates pages as image and saves them in cache for document at provided URL.\nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageCreatePagesCacheFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "ImageOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ImageOptions"
+            },
+            "x-nullable": true,
+            "description": "The image rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains list of links to document pages along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/ImagePageCollection"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/pages/{pageNumber}": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document page as image.",
+        "operationId": "ImageGetPage",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "image/*"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "x-nullable": false,
+            "description": "The page number.",
+            "format": "int32"
+          },
+          {
+            "type": "string",
+            "name": "Format",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The image format (jpg, png or bmp). Default value is png."
+          },
+          {
+            "type": "integer",
+            "name": "Width",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image width.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Height",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image height.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "integer",
+            "name": "Quality",
+            "in": "query",
+            "x-nullable": false,
+            "description": "The image quality in JPG format. Valid values are between 1 and 100. Default value is 90.",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password."
+          },
+          {
+            "type": "boolean",
+            "name": "ExtractText",
+            "in": "query",
+            "x-nullable": false,
+            "description": "When this options is set to true text contained in document will be extracted and returned along with other information.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual document page image data.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      }
+    },
+    "/viewer/{fileName}/image/pages/cache": {
+      "delete": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Removes document cache.",
+        "operationId": "ImageDeletePagesCache",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "An empty response with '204 No Content' status will be returned to confirm deletion."
+          }
+        }
+      }
+    },
+    "/viewer/{fileName}/image/pdf": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document as PDF.",
+        "operationId": "ImageGetPdfFile",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/pdf"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password. Not required if PDF document was created before."
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual file data of document in PDF format.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document. \nRemoves PDF document if it was created before.",
+        "operationId": "ImageCreatePdfFile",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "name": "PdfFileOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PdfFileOptions"
+            },
+            "x-nullable": true,
+            "description": "The PDF file rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains information about newly created PDF document or actual PDF document when \"application/pdf\" accept header specified returned along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    },
+    "/viewer/image/pdf": {
+      "get": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Downloads document at provided URL as PDF. \nDocument will be retrieved from the passed URL and added to Storage.",
+        "operationId": "ImageGetPdfFileFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/pdf"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "Password",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The document password. Not required if PDF document was created before."
+          },
+          {
+            "type": "boolean",
+            "name": "RenderComments",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Allows to render document comments. Not required if PDF document was created before.",
+            "default": false
+          },
+          {
+            "type": "boolean",
+            "name": "RenderHiddenPages",
+            "in": "query",
+            "x-nullable": false,
+            "description": "Enables document hidden pages, sheets or slides rendering.",
+            "default": false
+          },
+          {
+            "type": "string",
+            "name": "DefaultFontName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The name of the default font."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Actual file data of document in PDF format.",
+            "schema": {
+              "type": "file",
+              "description": "The file.",
+              "default": true
+            },
+            "x-nullable": true
+          }
+        },
+        "x-binary-result": "true"
+      },
+      "post": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document from document passed in request body and saves it in cache.\nContent with document or multipart content is expected where first part is document and second is PdfFileOptions.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.",
+        "operationId": "ImageCreatePdfFileFromContent",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "file",
+            "name": "File",
+            "in": "formData",
+            "required": true,
+            "description": "File contents."
+          },
+          {
+            "type": "file",
+            "name": "PdfFileOptions",
+            "in": "formData",
+            "required": true,
+            "description": "PDF rendering options 'PdfFileOptions' as JSON or XML."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains information about newly created PDF document or actual PDF document when \"application/pdf\" accept header specified returned along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "viewer"
+        ],
+        "summary": "Creates PDF document for document at provided URL and saves it in cache. \nRetrieves file from specified URL and tries to detect file type when fileName parameter is not specified.\nSaves retrieved file in storage. Use fileName and folder parameters to specify desired file name and folder to save file.\nWhen file with specified name already exists in storage new unique file name will be used for file.\nExpects PdfFileOptions﻿ object data in request body.",
+        "operationId": "ImageCreatePdfFileFromUrl",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Url",
+            "in": "query",
+            "required": true,
+            "x-nullable": true,
+            "description": "The URL to retrieve document."
+          },
+          {
+            "name": "PdfFileOptions",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PdfFileOptions"
+            },
+            "x-nullable": true,
+            "description": "The PDF file rendering options."
+          },
+          {
+            "type": "string",
+            "name": "FileName",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The file name."
+          },
+          {
+            "type": "string",
+            "name": "FontsFolder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder with custom fonts in storage."
+          },
+          {
+            "type": "string",
+            "name": "Folder",
+            "in": "query",
+            "x-nullable": true,
+            "description": "The folder which contains specified file in storage."
+          },
+          {
+            "type": "string",
+            "name": "Storage",
+            "in": "query",
+            "description": "The file storage which have to be used."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Object which contains information about newly created PDF document along with '201 Created' status.",
+            "schema": {
+              "$ref": "#/definitions/PdfFileInfo"
+            },
+            "x-nullable": true
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FontCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Families": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FontFamily"
+          },
+          "description": "Font families."
+        }
+      },
+      "description": "Describes collection of font families."
+    },
+    "FontFamily": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Font family name."
+        }
+      },
+      "description": "Describes font family."
+    },
+    "FormatCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Format"
+          },
+          "description": "Supported file formats."
+        }
+      },
+      "description": "Describes object which contains list of supported file formats."
+    },
+    "Format": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileFormat": {
+          "type": "string",
+          "description": "File format."
+        },
+        "Extension": {
+          "type": "string",
+          "description": "File extension."
+        }
+      },
+      "description": "Format description."
+    },
+    "DocumentInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Size",
+        "DateModified"
+      ],
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "File name."
+        },
+        "Extension": {
+          "type": "string",
+          "description": "Extension"
+        },
+        "FileFormat": {
+          "type": "string",
+          "description": "File format."
+        },
+        "Size": {
+          "type": "integer",
+          "description": "Size in bytes.",
+          "format": "int64"
+        },
+        "DateModified": {
+          "type": "string",
+          "description": "Modification date.",
+          "format": "date-time"
+        },
+        "Pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageInfo"
+          },
+          "description": "Pages information."
+        },
+        "Attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttachmentInfo"
+          },
+          "description": "List of attachments."
+        }
+      },
+      "description": "Describes document information."
+    },
+    "PageInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Number",
+        "Width",
+        "Height",
+        "Angle",
+        "Visible"
+      ],
+      "properties": {
+        "Number": {
+          "type": "integer",
+          "description": "Page number.",
+          "format": "int32"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Page name."
+        },
+        "Width": {
+          "type": "integer",
+          "description": "Page width.",
+          "format": "int32"
+        },
+        "Height": {
+          "type": "integer",
+          "description": "Page height.",
+          "format": "int32"
+        },
+        "Angle": {
+          "type": "integer",
+          "description": "Page angle.",
+          "format": "int32"
+        },
+        "Visible": {
+          "type": "boolean",
+          "description": "Page visibility."
+        },
+        "Rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RowInfo"
+          },
+          "description": "Page rows."
+        }
+      },
+      "description": "Page information."
+    },
+    "RowInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RowLeft",
+        "RowTop",
+        "RowWidth",
+        "RowHeight"
+      ],
+      "properties": {
+        "Text": {
+          "type": "string",
+          "description": "Row text."
+        },
+        "RowLeft": {
+          "type": "number",
+          "description": "Row left coordinate.",
+          "format": "double"
+        },
+        "RowTop": {
+          "type": "number",
+          "description": "Row top coordinate.",
+          "format": "double"
+        },
+        "RowWidth": {
+          "type": "number",
+          "description": "Row width.",
+          "format": "double"
+        },
+        "RowHeight": {
+          "type": "number",
+          "description": "Row height.",
+          "format": "double"
+        },
+        "TextCoordinates": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": "Text coordinates."
+        },
+        "CharacterCoordinates": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": "Characters coordinates."
+        }
+      },
+      "description": "The page text row information."
+    },
+    "AttachmentInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Attachment name."
+        },
+        "Extension": {
+          "type": "string",
+          "description": "Attachment extension."
+        },
+        "FileFormat": {
+          "type": "string",
+          "description": "File format."
+        }
+      },
+      "description": "Describes attachment information"
+    },
+    "DocumentInfoOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/RenderOptionsBase"
+        },
+        {
+          "type": "object"
+        }
+      ],
+      "description": "Provides options for retrieving document information."
+    },
+    "RenderOptionsBase": {
+      "type": "object",
+      "discriminator": "Type",
+      "additionalProperties": false,
+      "required": [
+        "ExtractText",
+        "RenderComments",
+        "RenderHiddenPages"
+      ],
+      "properties": {
+        "Password": {
+          "type": "string",
+          "description": "Allows to specify document password in case when document is password-protected."
+        },
+        "AttachmentPassword": {
+          "type": "string",
+          "description": "Allows to specify attachment password in case when attachment is password-protected."
+        },
+        "ExtractText": {
+          "type": "boolean",
+          "description": "Enables document text extraction. For rendering document as image only."
+        },
+        "RenderComments": {
+          "type": "boolean",
+          "description": "Enables document comments rendering."
+        },
+        "RenderHiddenPages": {
+          "type": "boolean",
+          "description": "Enables document hidden pages, sheets or slides rendering."
+        },
+        "Transforms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Transforms to apply.\nAvailable transforms [\"Rotate\",\"Reorder\",\"AddPrintAction\"].\nRotate - Pages will be rotated on angle if angle was set before.\nReorder - For rendering document as PDF only. Pages will be ordered according to rearrangements made before.\nAddPrintAction - For rendering document as PDF only. An JavaScript action will be added which opens print dialog when PDF document is opened.   "
+        },
+        "DefaultFontName": {
+          "type": "string",
+          "description": "The name of the default font.\nDefault font name may be specified in following cases:\n- You want to generally specify the default font to fall back on, if particular font\n  in the document cannot be found during rendering.\n- Your document uses fonts, that contain non-English characters and you want to make sure\n  any missing font is replaced with one that has the same character set available."
+        },
+        "Watermark": {
+          "description": "Allows to specify watermark.",
+          "$ref": "#/definitions/Watermark"
+        },
+        "CellsOptions": {
+          "description": "The Spreadsheet documents rendering options.",
+          "$ref": "#/definitions/CellsOptions"
+        },
+        "CadOptions": {
+          "description": "The CAD documents rendering options.",
+          "$ref": "#/definitions/CadOptions"
+        },
+        "EmailOptions": {
+          "description": "The Email documents rendering options.",
+          "$ref": "#/definitions/EmailOptions"
+        },
+        "WordsOptions": {
+          "description": "The Text documents rendering options.",
+          "$ref": "#/definitions/WordsOptions"
+        },
+        "PdfOptions": {
+          "description": "The PDF documents rendering options.",
+          "$ref": "#/definitions/PdfOptions"
+        },
+        "SlidesOptions": {
+          "description": "The Presentation documents rendering options.",
+          "$ref": "#/definitions/SlidesOptions"
+        }
+      },
+      "description": "Base render options."
+    },
+    "Watermark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Size"
+      ],
+      "properties": {
+        "Text": {
+          "type": "string",
+          "description": "The watermark text."
+        },
+        "Color": {
+          "type": "string",
+          "description": "The watermark color.\nSupported formats {Magenta|(112,222,11)|(50,112,222,11)}.\nDefault value is \"Red\"."
+        },
+        "Position": {
+          "type": "string",
+          "description": "The watermark position.\nSupported positions {Diagonal|TopLeft|TopCenter|TopRight|BottomLeft|BottomCenter|BottomRight}.\nDefault value is \"Diagonal\"."
+        },
+        "Size": {
+          "type": "integer",
+          "description": "Watermark size in percents.\nDefault value is 100.",
+          "format": "int32"
+        }
+      },
+      "description": "Provides options to configure watermark appearance. "
+    },
+    "CellsOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RenderGridLines",
+        "PaginateSheets",
+        "CountRowsPerPage",
+        "IgnoreEmptyRows"
+      ],
+      "properties": {
+        "RenderGridLines": {
+          "type": "boolean",
+          "description": "Indicates whether to render grid lines."
+        },
+        "PaginateSheets": {
+          "type": "boolean",
+          "description": "Allows to enable worksheets pagination.\nBy default one worksheet is rendered into one page."
+        },
+        "CountRowsPerPage": {
+          "type": "integer",
+          "description": "The number of rows rendered into one page when PaginateSheets = true.\nDefault value is 50.",
+          "format": "int32"
+        },
+        "IgnoreEmptyRows": {
+          "type": "boolean",
+          "description": "Indicates whether empty rows should be ignored."
+        },
+        "Encoding": {
+          "type": "string",
+          "description": "The text (*.csv) document encoding."
+        },
+        "InternalHyperlinkPrefix": {
+          "type": "string",
+          "description": "Prefix for hyper-link that references worksheet inside the same document.\nFor rendering document as HTML only."
+        },
+        "TextOverflowMode": {
+          "type": "string",
+          "description": "Text overflow mode applied when the text is too big to fit into the cell.\nSupported modes {Overlay|OverlayIfNextIsEmpty|HideText}.\nOverlay - Overlay next cells even they are not empty.\nOverlayIfNextIsEmpty - Overlay next cells only if they are not empty\nHideText - Hide overflow text\nDefault value is OverlayIfNextIsEmpty."
+        }
+      },
+      "description": "The Spreadsheet documents rendering options."
+    },
+    "CadOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ScaleFactor",
+        "Width",
+        "Height",
+        "RenderLayouts"
+      ],
+      "properties": {
+        "ScaleFactor": {
+          "type": "number",
+          "description": "The scale factor affects the size of an output document.        ",
+          "format": "double"
+        },
+        "Width": {
+          "type": "integer",
+          "description": "The width of the render result in pixels.        ",
+          "format": "int32"
+        },
+        "Height": {
+          "type": "integer",
+          "description": "The height of the render result in pixels.        ",
+          "format": "int32"
+        },
+        "RenderLayouts": {
+          "type": "boolean",
+          "description": "Indicates whether layouts from CAD document should be rendered."
+        },
+        "LayoutName": {
+          "type": "string",
+          "description": "The name of the specific layout to render."
+        }
+      },
+      "description": "The CAD documents rendering options."
+    },
+    "EmailOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Encoding": {
+          "type": "string",
+          "description": "The document encoding e.g. \"utf-8\"."
+        }
+      },
+      "description": "The Email documents rendering options."
+    },
+    "WordsOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RenderTrackedChanges"
+      ],
+      "properties": {
+        "Encoding": {
+          "type": "string",
+          "description": "The document encoding e.g. \"utf-8\"."
+        },
+        "RenderTrackedChanges": {
+          "type": "boolean",
+          "description": "Indicates whether Tracked Changes (Revisions) should be rendered or not."
+        }
+      },
+      "description": "The Text documents rendering options."
+    },
+    "PdfOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "EnablePreciseRendering",
+        "EnableInitialContentOrdering",
+        "RenderLayersSeparately"
+      ],
+      "properties": {
+        "EnablePreciseRendering": {
+          "type": "boolean",
+          "description": "Indicates whether the PDF document is rendered in a precise mode or not.\nIt is recommended to enable this option when rendering documents with complex content\ne.g. documents which contains hieroglyphs or any kind o glyphs which should be rendered separately\nfrom each other."
+        },
+        "EnableInitialContentOrdering": {
+          "type": "boolean",
+          "description": "When this option is enabled content (graphics and text)\nwill be added to HTML document accordingly Z-order in original PDF document.\nWhen this option is disabled content (graphics and text) will be added to a single layer."
+        },
+        "RenderLayersSeparately": {
+          "type": "boolean",
+          "description": "When this option is enabled layers will be separated from each other in the HTML document."
+        }
+      },
+      "description": "The PDF documents rendering options."
+    },
+    "SlidesOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RenderNotes"
+      ],
+      "properties": {
+        "RenderNotes": {
+          "type": "boolean",
+          "description": "Indicates whether slide notes should be rendered."
+        }
+      },
+      "description": "The Presentation documents rendering options."
+    },
+    "FileResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The empty type used as a flag."
+    },
+    "HtmlAttachmentPageCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "The file name."
+        },
+        "Folder": {
+          "type": "string",
+          "description": "File folder."
+        },
+        "AttachmentName": {
+          "type": "string",
+          "description": "Attachment name."
+        },
+        "Pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HtmlPage"
+          },
+          "description": "Pages list."
+        }
+      },
+      "description": "Describes attachment pages."
+    },
+    "HtmlPage": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "Number"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Number": {
+              "type": "integer",
+              "description": "Page number.",
+              "format": "int32"
+            },
+            "Resources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Resource"
+              },
+              "description": "HTML resources."
+            }
+          }
+        }
+      ],
+      "description": "Describes HTML page."
+    },
+    "Resource": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Name": {
+              "type": "string",
+              "description": "HTML resource (image, style, graphics or font) file name."
+            }
+          }
+        }
+      ],
+      "description": "Describes resource."
+    },
+    "ResourceUrl": {
+      "type": "object",
+      "discriminator": "Type",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "ULR to retrieve resource."
+        }
+      },
+      "description": "Reference to resource."
+    },
+    "HtmlOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "IgnoreResourcePathInResources",
+        "EmbedResources"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/RenderOptions"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ResourcePath": {
+              "type": "string",
+              "description": "Allows to specify HTML resources (styles, images and fonts) path.\nFor example when resource path is http://example.com/api/pages/{page-number}/resources/{resource-name}\nthe {page-number} and {resource-name} templates will be replaced with page number and resource name accordingly.\nIgnored when EmbedResources option is set to true."
+            },
+            "IgnoreResourcePathInResources": {
+              "type": "boolean",
+              "description": "Allows to ignore ResourcePath when processing *.css files. \nWhen this options is enabled ResourcePath won't be added to resource references in *.css file."
+            },
+            "EmbedResources": {
+              "type": "boolean",
+              "description": "Controls output HTML document resources (styles, images and fonts) saving.\nWhen this options set to true all resources will be embedded into HTML document and ResourcePath option value will be ignored."
+            }
+          }
+        }
+      ],
+      "description": "Provides options for rendering document pages as HTML."
+    },
+    "RenderOptions": {
+      "type": "null",
+      "discriminator": "Type",
+      "additionalProperties": false,
+      "required": [
+        "StartPageNumber",
+        "CountPages"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/RenderOptionsBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "StartPageNumber": {
+              "type": "integer",
+              "description": "Allows to specify document page number as starting page to render. ",
+              "format": "int32"
+            },
+            "CountPages": {
+              "type": "integer",
+              "description": "Allows to specify count of document pages to render.",
+              "format": "int32"
+            }
+          }
+        }
+      ],
+      "description": "Base render options."
+    },
+    "AttachmentCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "File name."
+        },
+        "Folder": {
+          "type": "string",
+          "description": "File folder."
+        },
+        "Attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Attachment"
+          },
+          "description": "Attachments list."
+        }
+      },
+      "description": "Describes attachments."
+    },
+    "Attachment": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Name": {
+              "type": "string",
+              "description": "Attachment name."
+            }
+          }
+        }
+      ],
+      "description": "Describes attachment."
+    },
+    "HtmlPageCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "The name of the file."
+        },
+        "Folder": {
+          "type": "string",
+          "description": "The file folder."
+        },
+        "Pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HtmlPage"
+          },
+          "description": "Pages list."
+        }
+      },
+      "description": "Describes collection of HTML pages."
+    },
+    "TransformOptionsBase": {
+      "type": "object",
+      "discriminator": "Type",
+      "additionalProperties": false,
+      "required": [
+        "PageNumber"
+      ],
+      "properties": {
+        "PageNumber": {
+          "type": "integer",
+          "description": "The page number to transform.",
+          "format": "int32"
+        },
+        "Password": {
+          "type": "string",
+          "description": "Allows to specify document password in case when document is password-protected."
+        }
+      },
+      "description": "Base transformation options."
+    },
+    "ReorderOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "NewPosition"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransformOptionsBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "NewPosition": {
+              "type": "integer",
+              "description": "The position where page should be placed.",
+              "format": "int32"
+            }
+          }
+        }
+      ],
+      "description": "Provides options for reordering document pages."
+    },
+    "RotateOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "Angle"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransformOptionsBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Angle": {
+              "type": "integer",
+              "description": "The angle in degrees to which the page should be rotated.",
+              "format": "int32"
+            }
+          }
+        }
+      ],
+      "description": "Provides options for rotating document pages."
+    },
+    "PageInfoCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageInfo"
+          },
+          "description": "Pages list."
+        }
+      },
+      "description": "Describes pages information."
+    },
+    "PdfFileOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/RenderOptionsBase"
+        },
+        {
+          "type": "object"
+        }
+      ],
+      "description": "Provides options for rendering document as PDF."
+    },
+    "PdfFileInfo": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "FileName": {
+              "type": "string",
+              "description": "File name."
+            },
+            "Folder": {
+              "type": "string",
+              "description": "File folder."
+            },
+            "PdfFileName": {
+              "type": "string",
+              "description": "PDF file name."
+            }
+          }
+        }
+      ],
+      "description": "Describes PDF file information."
+    },
+    "ImageAttachmentPageCollection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileName": {
+          "type": "string",
+          "description": "File name."
+        },
+        "Folder": {
+          "type": "string",
+          "description": "File folder."
+        },
+        "AttachmentName": {
+          "type": "string",
+          "description": "Name of the attachment."
+        },
+        "Pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ImagePage"
+          },
+          "description": "Pages list."
+        }
+      },
+      "description": "Describes attachment pages."
+    },
+    "ImagePage": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "Number"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Number": {
+              "type": "integer",
+              "description": "Page number.",
+              "format": "int32"
+            }
+          }
+        }
+      ],
+      "description": "Describes image page."
+    },
+    "ImageOptions": {
+      "type": "null",
+      "additionalProperties": false,
+      "required": [
+        "Quality",
+        "Width",
+        "Height"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/RenderOptions"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Format": {
+              "type": "string",
+              "description": "Allows to set image format (png, jpg, bmp).\nDefault value is png."
+            },
+            "Quality": {
+              "type": "integer",
+              "description": "Allows to specify quality when rendering as JPG.\nValid values are between 1 and 100. \nDefault value is 90.",
+              "format": "int32"
+            },
+            "Width": {
+              "type": "integer",
+              "description": "Allows to specify output image width. \nSpecify image width in case when you want to change output image dimensions.\nWhen Width has value and Height value is 0 then Height value will be calculated \nto save image proportions. ",
+              "format": "int32"
+            },
+            "Height": {
+              "type": "integer",
+              "description": "Allows to specify output image height. \nSpecify image height in case when you want to change output image dimensions.\nWhen Height has value and Width value is 0 then Width value will be calculated \nto save image proportions.",
+              "format": "int32"
+            }
+          }
+        }
+      ],
+      "description": "Provides options for rendering document as image."
+    },
+    "ImagePageCollection": {
+      "type": "null",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResourceUrl"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "FileName": {
+              "type": "string",
+              "description": "File name."
+            },
+            "Folder": {
+              "type": "string",
+              "description": "File folder."
+            },
+            "Pages": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ImagePage"
+              },
+              "description": "Images list."
+            }
+          }
+        }
+      ],
+      "description": "Describes image pages."
+    }
+  },
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth": {
+      "type": "oauth2",
+      "flow": "application",
+      "authorizationUrl": "localhost/oauth2/token"
+    },
+    "appsid": {
+      "type": "apiKey",
+      "name": "Appsid",
+      "in": "query"
+    },
+    "signature": {
+      "type": "apiKey",
+      "name": "Signature",
+      "in": "query"
+    }
+  }
+}
