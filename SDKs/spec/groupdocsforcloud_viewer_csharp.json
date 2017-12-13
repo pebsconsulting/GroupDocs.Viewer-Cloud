@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "GroupDocs.Viewer for Cloud API References",
-    "version": "1"
+    "version": "17.11"
   },
   "host": "localhost",
   "basePath": "/v1",
